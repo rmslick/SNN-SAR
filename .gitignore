@@ -251,7 +251,6 @@ SpykeTorch/__pycache__
 # FAKE - F# Make
 .fake/
 
-SpykeTorch/
 mstarutils/
 mstardataset/
 mstardataset64/
