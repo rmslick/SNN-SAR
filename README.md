@@ -4,7 +4,7 @@ SNN designed with SpykeTorch for classifying Synthetic Aperture Radar imagery da
 
 ## Usage
 
-Running the following will train the network on the MSTAR Synthetic Aperture Radar dataset. It uses the SN_9563 and SN_C71 vehicles.
+Running the following will train the network on the MSTAR Synthetic Aperture Radar dataset. It uses the SN_9563 and SN_C71 vehicles and can classify with 85% percent accuracy on the test set.
 
 ```bash
 python MStar.py
