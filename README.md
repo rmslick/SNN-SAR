@@ -1,6 +1,6 @@
 # Spiking Neural Network for SAR data
 
-SNN designed with SpykeTorch for classifying Synthetic Aperture Radar imagery data. SNN is a reinforcement using network that uses STDP based learning and lateral inhibition to train a network of neurons.
+SNN designed with SpykeTorch for classifying Synthetic Aperture Radar imagery data. The SNN uses reinforcement and STDP based learning with lateral inhibition to train a network of neurons.
 
 ## Usage
 
