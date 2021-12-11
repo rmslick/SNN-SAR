@@ -10,16 +10,21 @@ import cv2
 from scipy.ndimage.filters import uniform_filter
 from scipy.ndimage.measurements import variance
 #https://stackoverflow.com/questions/39785970/speckle-lee-filter-in-python
-def lee_filter(img, size):
-    img_mean = uniform_filter(img, (size, size))
-    img_sqr_mean = uniform_filter(img**2, (size, size))
-    img_variance = img_sqr_mean - img_mean**2
+import findpeaks
 
-    overall_variance = variance(img)
-
-    img_weights = img_variance / (img_variance + overall_variance)
-    img_output = img_mean + img_weights * (img - img_mean)
-    return img_output
+# filters parameters
+# window size
+winsize = 15
+# damping factor for frost
+k_value1 = 2.0
+# damping factor for lee enhanced
+k_value2 = 1.0
+# coefficient of variation of noise
+cu_value = 0.25
+# coefficient of variation for lee enhanced of noise
+cu_lee_enhanced = 0.523
+# max coefficient of variation for lee enhanced
+cmax_value = 1.73
 
 
 for t in glob.glob('MSTAR/TARGETS/TRAIN/17_DEG/BMP2/SN_9563/*'):
@@ -32,6 +37,7 @@ for t in glob.glob('MSTAR/TARGETS/TRAIN/17_DEG/BMP2/SN_9563/*'):
     #print(img)
     up_points = (64,64)
     resized_up = cv2.resize(img, up_points, interpolation= cv2.INTER_LINEAR)
+    resized_up = findpeaks.stats.scale(resized_up).copy()
     resized_up = cv2.bilateralFilter(resized_up, 15, 75, 75)
     cv2.imwrite( 'mstardataset64/train/SN_9563/'+fName, resized_up)
 
@@ -44,6 +50,7 @@ for t in glob.glob('MSTAR/TARGETS/TEST/15_DEG/BMP2/SN_9563/*'):
     up_points = (64,64)
     resized_up = cv2.resize(img, up_points, interpolation= cv2.INTER_LINEAR)
     resized_up = cv2.bilateralFilter(resized_up, 15, 75, 75)
+    resized_up = findpeaks.stats.scale(resized_up).copy()
     cv2.imwrite( 'mstardataset64/test/SN_9563/'+fName, resized_up)
 
 for t in glob.glob('MSTAR/TARGETS/TRAIN/17_DEG/BTR70/SN_C71/*'):
@@ -55,6 +62,7 @@ for t in glob.glob('MSTAR/TARGETS/TRAIN/17_DEG/BTR70/SN_C71/*'):
     img = cv2.imread('mstardataset/train/SN_C71/'+fName)
     up_points = (64,64)
     resized_up = cv2.resize(img, up_points, interpolation= cv2.INTER_LINEAR)
+    resized_up = findpeaks.stats.scale(resized_up).copy()
     resized_up = cv2.bilateralFilter(resized_up, 15, 75, 75)
     cv2.imwrite( 'mstardataset64/train/SN_C71/'+fName, resized_up)
 
@@ -66,6 +74,7 @@ for t in glob.glob('MSTAR/TARGETS/TEST/15_DEG/BTR70/SN_C71/*'):
     img = cv2.imread('mstardataset/test/SN_C71/'+fName)
     up_points = (64,64)
     resized_up = cv2.resize(img, up_points, interpolation= cv2.INTER_LINEAR)
-    resized_up = cv2.bilateralFilter(resized_up, 15, 75, 75)
+    resized_up = findpeaks.stats.scale(resized_up).copy()
+    resized_up = cv2.bilateralFilter(resized_up, 15, 75, 75).copy()
     cv2.imwrite( 'mstardataset64/test/SN_C71/'+fName, resized_up)
     
