@@ -38,7 +38,9 @@ for t in glob.glob('MSTAR/TARGETS/TRAIN/17_DEG/BMP2/SN_9563/*'):
     up_points = (64,64)
     resized_up = cv2.resize(img, up_points, interpolation= cv2.INTER_LINEAR)
     resized_up = findpeaks.stats.scale(resized_up).copy()
-    resized_up = cv2.bilateralFilter(resized_up, 15, 75, 75)
+    #resized_up = cv2.bilateralFilter(resized_up, 15, 75, 75)
+    resized_up = findpeaks.stats.togray(resized_up).copy()
+    resized_up = findpeaks.frost_filter(resized_up.copy(), damping_factor=k_value1, win_size=winsize,)
     cv2.imwrite( 'mstardataset64/train/SN_9563/'+fName, resized_up)
 
 for t in glob.glob('MSTAR/TARGETS/TEST/15_DEG/BMP2/SN_9563/*'):
@@ -49,8 +51,11 @@ for t in glob.glob('MSTAR/TARGETS/TEST/15_DEG/BMP2/SN_9563/*'):
     img = cv2.imread('mstardataset/test/SN_9563/'+fName)
     up_points = (64,64)
     resized_up = cv2.resize(img, up_points, interpolation= cv2.INTER_LINEAR)
-    resized_up = cv2.bilateralFilter(resized_up, 15, 75, 75)
+    #resized_up = cv2.bilateralFilter(resized_up, 15, 75, 75)
     resized_up = findpeaks.stats.scale(resized_up).copy()
+    resized_up = findpeaks.stats.togray(resized_up).copy()
+    resized_up = findpeaks.frost_filter(resized_up.copy(), damping_factor=k_value1, win_size=winsize)
+
     cv2.imwrite( 'mstardataset64/test/SN_9563/'+fName, resized_up)
 
 for t in glob.glob('MSTAR/TARGETS/TRAIN/17_DEG/BTR70/SN_C71/*'):
@@ -63,7 +68,10 @@ for t in glob.glob('MSTAR/TARGETS/TRAIN/17_DEG/BTR70/SN_C71/*'):
     up_points = (64,64)
     resized_up = cv2.resize(img, up_points, interpolation= cv2.INTER_LINEAR)
     resized_up = findpeaks.stats.scale(resized_up).copy()
-    resized_up = cv2.bilateralFilter(resized_up, 15, 75, 75)
+    #resized_up = cv2.bilateralFilter(resized_up, 15, 75, 75)
+    resized_up = findpeaks.stats.togray(resized_up).copy()
+    resized_up = findpeaks.frost_filter(resized_up.copy(), damping_factor=k_value1, win_size=winsize)
+
     cv2.imwrite( 'mstardataset64/train/SN_C71/'+fName, resized_up)
 
 for t in glob.glob('MSTAR/TARGETS/TEST/15_DEG/BTR70/SN_C71/*'):
@@ -75,6 +83,9 @@ for t in glob.glob('MSTAR/TARGETS/TEST/15_DEG/BTR70/SN_C71/*'):
     up_points = (64,64)
     resized_up = cv2.resize(img, up_points, interpolation= cv2.INTER_LINEAR)
     resized_up = findpeaks.stats.scale(resized_up).copy()
-    resized_up = cv2.bilateralFilter(resized_up, 15, 75, 75).copy()
+    #resized_up = cv2.bilateralFilter(resized_up, 15, 75, 75).copy()
+    resized_up = findpeaks.stats.togray(resized_up).copy()
+    resized_up = findpeaks.frost_filter(resized_up.copy(), damping_factor=k_value1, win_size=winsize)
+
     cv2.imwrite( 'mstardataset64/test/SN_C71/'+fName, resized_up)
     
