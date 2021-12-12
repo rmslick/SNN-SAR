@@ -40,7 +40,7 @@ for t in glob.glob('MSTAR/TARGETS/TRAIN/17_DEG/BMP2/SN_9563/*'):
     resized_up = findpeaks.stats.scale(resized_up).copy()
     #resized_up = cv2.bilateralFilter(resized_up, 15, 75, 75)
     resized_up = findpeaks.stats.togray(resized_up).copy()
-    resized_up = findpeaks.kuan_filter(resized_up.copy(), win_size=winsize, cu=cu_value)
+    resized_up = findpeaks.lee_enhanced_filter(resized_up.copy(), win_size=winsize, k=k_value2, cu=cu_lee_enhanced, cmax=cmax_value)
     cv2.imwrite( 'mstardataset64/train/SN_9563/'+fName, resized_up)
 
 for t in glob.glob('MSTAR/TARGETS/TEST/15_DEG/BMP2/SN_9563/*'):
@@ -54,7 +54,7 @@ for t in glob.glob('MSTAR/TARGETS/TEST/15_DEG/BMP2/SN_9563/*'):
     #resized_up = cv2.bilateralFilter(resized_up, 15, 75, 75)
     resized_up = findpeaks.stats.scale(resized_up).copy()
     resized_up = findpeaks.stats.togray(resized_up).copy()
-    resized_up = findpeaks.kuan_filter(resized_up.copy(), win_size=winsize, cu=cu_value)
+    resized_up = findpeaks.lee_enhanced_filter(resized_up.copy(), win_size=winsize, k=k_value2, cu=cu_lee_enhanced, cmax=cmax_value)
 
     cv2.imwrite( 'mstardataset64/test/SN_9563/'+fName, resized_up)
 
@@ -70,7 +70,7 @@ for t in glob.glob('MSTAR/TARGETS/TRAIN/17_DEG/BTR70/SN_C71/*'):
     resized_up = findpeaks.stats.scale(resized_up).copy()
     #resized_up = cv2.bilateralFilter(resized_up, 15, 75, 75)
     resized_up = findpeaks.stats.togray(resized_up).copy()
-    resized_up = findpeaks.kuan_filter(resized_up.copy(), win_size=winsize, cu=cu_value)
+    resized_up = findpeaks.lee_enhanced_filter(resized_up.copy(), win_size=winsize, k=k_value2, cu=cu_lee_enhanced, cmax=cmax_value)
 
     cv2.imwrite( 'mstardataset64/train/SN_C71/'+fName, resized_up)
 
@@ -85,7 +85,7 @@ for t in glob.glob('MSTAR/TARGETS/TEST/15_DEG/BTR70/SN_C71/*'):
     resized_up = findpeaks.stats.scale(resized_up).copy()
     #resized_up = cv2.bilateralFilter(resized_up, 15, 75, 75).copy()
     resized_up = findpeaks.stats.togray(resized_up).copy()
-    resized_up = findpeaks.kuan_filter(resized_up.copy(), win_size=winsize, cu=cu_value)
+    resized_up = findpeaks.lee_enhanced_filter(resized_up.copy(), win_size=winsize, k=k_value2, cu=cu_lee_enhanced, cmax=cmax_value)
 
     cv2.imwrite( 'mstardataset64/test/SN_C71/'+fName, resized_up)
     
